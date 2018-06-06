@@ -1,0 +1,49 @@
+function funcPowerCalc(){
+    function Calculator(){
+        var methods = {
+            "-": function(a, b){
+                return a - b;
+            },
+            "+": function(a, b){
+                return a + b;
+            }
+        };
+        this.calculate = function(str) {
+
+            var split = str.split(' '),
+              a = +split[0],
+              op = split[1],
+              b = +split[2]
+        
+            if (!methods[op] || isNaN(a) || isNaN(b)) {
+              return NaN;
+            }
+        
+            return methods[op](a, b);
+          }
+        this.addMethod = function(name, func){
+            methods[name] = func;
+        };
+    }
+    var calc = new Calculator;
+    calc.addMethod('*', function(a,b){
+        return a*b;
+    })
+    calc.addMethod('/',function(a,b){
+        return a/b;
+    })
+    calc.addMethod('**', function(a,b){
+        return Math.pow(a, b)
+    })
+    var result = calc.calculate("6 + 2")
+    alert("6 + 2 = " + result)
+    result = calc.calculate("6 - 2")
+    alert("6 - 2 = " + result)
+    result = calc.calculate("6 * 2")
+    alert("6 * 2 = " + result)
+    result = calc.calculate("6 / 2")
+    alert("6 / 2 = " + result)
+    result = calc.calculate("6 ** 2")
+    alert("6 ** 2 = " + result)
+}
+    
